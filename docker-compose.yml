@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  wishlist-db:
+    image: mongo:latest
+    container_name: "wishlist-db"
+    ports:
+      - 27017:27017
+  wishlist:
+    image: wishlist
+    ports:
+      - 8080:8080
+      - 8081:8081
+    links:
+      - wishlist-db
+    environment:
+      - DB_HOST=wishlist-db
